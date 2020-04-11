@@ -1,0 +1,62 @@
+.App {
+  display: flex;
+
+}
+
+.Node {
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  height: 20px;
+  width: 25px;
+  margin-left: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  /* -webkit-animation: fadein 2s; */
+}
+
+.Node:first-child {
+  margin-left: 0px;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.Container {
+  border-style: solid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  width: 700px;
+  height: 700px;
+}
+
+.Editor-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.Button {
+  width: 100px;
+  height: 30px;
+  background-color: rgb(36, 34, 34);
+  color: white;
+}
+
+.Buttons-Container {
+  margin-left: 20px;
+  width: 700px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
