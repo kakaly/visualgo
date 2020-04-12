@@ -25,7 +25,6 @@ function linkedList() {
   }
   
 function serialize(linkedlist) {
-  console.log(linkedList)
   let list = {};
   linkedlist.forEach(node => {
     if (node) {
