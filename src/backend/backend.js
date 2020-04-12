@@ -33,7 +33,7 @@ const processLinkedListCode = (code) => {
     }
   }
 
-  if (!returnPresent || !funtionPresent) {
+  if (!returnPresent && !funtionPresent) {
     return []
   }
 
@@ -45,7 +45,7 @@ const processLinkedListCode = (code) => {
 const processBtree = (code) => {
 
   let node = bnode
-  let insert = binsert
+  // let insert = binsert
   let lines = code.split('\n');
   lines = lines.filter(line => line !== "")
   if (lines.length === 2) { //TODO: Ugly 1

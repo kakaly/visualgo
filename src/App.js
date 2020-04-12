@@ -68,7 +68,8 @@ function App() {
       }
       clickRunCode(!runCode)
     } else {
-      setTree(processBtree(code))
+      let tree = processBtree(code)
+      setTree(tree)
     }
   }
 

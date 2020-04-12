@@ -25,10 +25,16 @@ function linkedList() {
   }
   
 function serialize(linkedlist) {
+  console.log(linkedList)
   let list = {};
   linkedlist.forEach(node => {
-    if(node.val !== 'null') list[node.val] = node.next.val;
-    else list[node.val] = ''
+    if (node) {
+      let val = 1
+      if(node.next === null) val = 'null'
+      else val = node.next.val
+      if(node.val !== 'null') list[node.val] = val;
+      else list[node.val] = ''
+    }
   });
   return list
   }
