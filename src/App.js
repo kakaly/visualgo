@@ -25,27 +25,31 @@ const sampleCode = `function reverse(head) {
 
 function App() {
 
-  let states = processCode()
-  console.log(states)
+  let [ states, setStates ] = useState(processCode(sampleCode))
+  let [ code, setCode ] = useState(sampleCode)
   let [ linkedList, setList ] = useState(states[0])
   let [ stateIndex, setStateIndex ] = useState(0)
   let [ runCode, clickRunCode ] = useState(false)
-  let [ code, setCode ] = useState(sampleCode)
 
   useInterval(() => {
     if(runCode) {
-      if(stateIndex >= states.length - 1) setStateIndex(0)
-      else setStateIndex(stateIndex+1)
-      setList(states[stateIndex])
+      if (states.length !== 0) {
+        if (stateIndex >= states.length - 1) setStateIndex(0)
+        else setStateIndex(stateIndex+1)
+        setList(states[stateIndex])
+      }
     }
   }, 100);
 
   const onClick = () => {
+    setStates(processCode(code))
+    if (states.length !== 0) {
+      setList(states[0])
+    }
     clickRunCode(!runCode)
   }
 
   const onChange = (code) => {
-    console.log("called")
     setCode(code)
   }
 

@@ -19,8 +19,6 @@ const editorStyle = {
 }
 
 const RenderEditor = ( props ) => {
-  console.log("hello")
-  console.log(props.code)
   return(
     <div className="Editor-Container">
       <AceEditor
