@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { node as cnode, linkedList, serialize } from './linkedList'
+import { node as bnode, insert as binsert, bfs } from './binaryTree'
 
 const processLinkedListCode = (code) => {
 
@@ -41,4 +42,24 @@ const processLinkedListCode = (code) => {
   return states;
 }
 
-export { processLinkedListCode }
+const processBtree = (code) => {
+
+  let node = bnode
+  let insert = binsert
+  let lines = code.split('\n');
+  lines = lines.filter(line => line !== "")
+  if (lines.length === 2) { //TODO: Ugly 1
+    return []
+  }
+  for(let i=0; i<lines.length; i++) {
+    if(lines[i].includes(`//`)) {
+      lines.splice(i, 2)
+    }
+  }
+
+  let r = new node(5)
+  eval(lines.join('\n'))
+  let tree = bfs(r)
+  return tree
+}
+export { processLinkedListCode, processBtree }

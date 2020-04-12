@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useInterval } from './hooks';
+import Dropdown from 'react-dropdown';
 import RenderList from './RenderList';
+import 'react-dropdown/style.css';
+import RenderTree from './RenderTree';
 import RenderEditor from './RenderEditor';
 
-import { processLinkedListCode } from './backend/backend';
+import { processLinkedListCode, processBtree } from './backend/backend';
 
 import './App.css';
 
@@ -23,8 +26,22 @@ const sampleCode = `function reverse(head) {
   return head;
 }`
 
+/* eslint-disable */
+const sampleBtreeCode = `
+  /\/\ Try let n = new node(3) for creating a new node
+  /\/\ Try insert(r, n) for inserting a new node into the binary tree
+  r = new node(10)`
+
+const options = [
+  'LinkedList',
+  'BinaryTree'
+];
+const defaultOption = options[0]
+
 function App() {
 
+  let [ option, setOption ] = useState(options[0])
+  let [ tree, setTree ] = useState(processBtree(sampleBtreeCode))
   let [ states, setStates ] = useState(processLinkedListCode(sampleCode))
   let [ code, setCode ] = useState(sampleCode)
   let [ linkedList, setList ] = useState(states[0])
@@ -42,23 +59,40 @@ function App() {
   }, 100);
 
   const onClick = () => {
-    setStates(processLinkedListCode(code))
-    if (states.length !== 0) {
-      setList(states[0])
+
+    setOption(option)
+    if(option === 'LinkedList') {
+      setStates(processLinkedListCode(code))
+      if (states.length !== 0) {
+        setList(states[0])
+      }
+      clickRunCode(!runCode)
+    } else {
+      setTree(processBtree(code))
     }
-    clickRunCode(!runCode)
   }
 
   const onChange = (code) => {
     setCode(code)
   }
 
+  const onSelect = (option) => {
+    if (option.value === "LinkedList") {
+      setCode(sampleCode)
+    } else {
+      setCode(sampleBtreeCode)
+    }
+    setOption(option.value)
+  }
+
   return (
     <React.Fragment>
       <div className="App">
         <RenderEditor onClick={onClick} onChange={onChange} code={code} />
-        <RenderList linkedList={linkedList} />
+        {(option === 'LinkedList')?
+          <RenderList linkedList={linkedList} /> : <RenderTree tree={tree}/>}
       </div>
+      <Dropdown options={options} value={option} onChange={onSelect} placeholder="Select an option" />
     </React.Fragment>
   );
 }

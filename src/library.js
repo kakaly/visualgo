@@ -22,4 +22,28 @@ const buildList = (linkedList) => {
   return connections
 }
 
-export { buildList }
+const buildTree = (tree) => {
+  let nodes = Object.keys(tree)
+  let connections = []
+  nodes.forEach(node => {
+    if(node !== 'null') {
+      let left = tree[node]['left']
+      let right = tree[node]['right']
+      let leftConn = jsPlumb.connect({
+        source:`element${node}`,
+        target:`element${left}`,
+        endpointStyle:{ fillStyle: "yellow" },
+        }, endpointConnector)
+      connections.push(leftConn)
+      let rightConn = jsPlumb.connect({
+        source:`element${node}`,
+        target:`element${right}`,
+        endpointStyle:{ fillStyle: "yellow" },
+        }, endpointConnector)
+      connections.push(rightConn)
+    }
+  })
+  return connections
+}
+
+export { buildList, buildTree }
