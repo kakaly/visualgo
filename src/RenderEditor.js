@@ -18,24 +18,9 @@ const editorStyle = {
   height: '700px',
 }
 
-const sampleCode = `function reverse(head) {
-  let node1 = new node('null');
-  let node2 = head;
-  let node3 = node2.next;
-  while (node3.val !== 'null') {
-    node2.next = node1;
-    node1 = node2;
-    node2 = node3;
-    node3 = node3.next;
-  }
-  node2.next = node1;
-  node1 = node2;
-  head = node1;
-  return head;
-}`
-
-const RenderEditor = ({ onClick }) => {
-
+const RenderEditor = ( props ) => {
+  console.log("hello")
+  console.log(props.code)
   return(
     <div className="Editor-Container">
       <AceEditor
@@ -48,16 +33,18 @@ const RenderEditor = ({ onClick }) => {
         showPrintMargin={true}
         showGutter={true}
         highlightActiveLine={true}
-        value={sampleCode}
+        value={props.code}
         setOptions={{
-        enableBasicAutocompletion: false,
-        enableLiveAutocompletion: false,
-        enableSnippets: false,
-        showLineNumbers: true,
-        tabSize: 2,
-      }}/>
+          enableBasicAutocompletion: false,
+          enableLiveAutocompletion: false,
+          enableSnippets: false,
+          showLineNumbers: true,
+          tabSize: 2
+        }}
+        onChange={ props.onChange }
+      />
       <div className="Buttons-Container">
-        <button className="Button" onClick={onClick}>RUN CODE</button>
+        <button className="Button" onClick={ props.onClick }>RUN CODE</button>
       </div>
     </div>
   )
