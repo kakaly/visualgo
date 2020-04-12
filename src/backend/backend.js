@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { node as cnode, linkedList, serialize } from './linkedList'
 
-const processCode = (code) => {
+const processLinkedListCode = (code) => {
 
   let node = cnode
   let cserialize = serialize
@@ -41,4 +41,4 @@ const processCode = (code) => {
   return states;
 }
 
-export { processCode }
+export { processLinkedListCode }

@@ -3,7 +3,7 @@ import { useInterval } from './hooks';
 import RenderList from './RenderList';
 import RenderEditor from './RenderEditor';
 
-import { processCode } from './backend/backend';
+import { processLinkedListCode } from './backend/backend';
 
 import './App.css';
 
@@ -25,7 +25,7 @@ const sampleCode = `function reverse(head) {
 
 function App() {
 
-  let [ states, setStates ] = useState(processCode(sampleCode))
+  let [ states, setStates ] = useState(processLinkedListCode(sampleCode))
   let [ code, setCode ] = useState(sampleCode)
   let [ linkedList, setList ] = useState(states[0])
   let [ stateIndex, setStateIndex ] = useState(0)
@@ -42,7 +42,7 @@ function App() {
   }, 100);
 
   const onClick = () => {
-    setStates(processCode(code))
+    setStates(processLinkedListCode(code))
     if (states.length !== 0) {
       setList(states[0])
     }
